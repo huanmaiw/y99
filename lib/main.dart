@@ -1,9 +1,8 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:y99/source/mvc/view/login/login_screen.dart';
-import 'package:y99/source/mvc/view/splash/splash_screen.dart';
+import 'package:get/get.dart';
+import 'core/app/theme/bindings.dart';
+import 'core/app/theme/get_pages.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -11,6 +10,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  AppBindings.dependencies();
   runApp(
     const MyApp());
 }
@@ -20,9 +20,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      title: 'Y99 App',
+      initialBinding: MainBinding(),
+      initialRoute: Routers.splash,
+      getPages: GetPages.pages,
+      theme: ThemeData(
+        fontFamily: 'Roboto',
+        primarySwatch: Colors.blue,
+      ),
     );
   }
 }

@@ -1,13 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:y99/core/app/color/res_color.dart';
+
 import 'package:y99/core/app/theme/app_key.dart';
-import 'package:y99/source/mvc/view/login/login_screen.dart';
-import 'package:y99/source/mvc/view/otp/verify_otp_screen.dart';
+import 'package:y99/source/mvc/controller/register_controller.dart';import 'package:y99/source/mvc/view/login/login_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+  final RegisterController controller = Get.put(RegisterController());
+
+  RegisterScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,195 +20,219 @@ class RegisterScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 40),
-                    decoration: const BoxDecoration(
-                      color: ResColor.blue,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 30),
-                        Image.asset("assets/logo/logo2.png",height: 50,width: 50,),
-                        SizedBox(height: 8),
-                        Text(
-                          AppKeys.slogan,
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
+                  _buildHeader(),
                   const SizedBox(height: 30),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Row(
-                        children: [
-                          Text(
-                            "Đăng ký",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Spacer(),
-                          const Icon(
-                            FontAwesomeIcons.facebook,
-                            color: Colors.blue,
-                            size: 30,
-                          ),
-                          const SizedBox(width: 20),
-                          Image.asset(
-                            "assets/icon/gg.png",
-                            height: 40,
-                            width: 40,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Column(
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: "Họ và tên",
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: "Ngày sinh",
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        //MyDatePickerField(),
-                        const SizedBox(height: 16),
-                        TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.only(top: 14),
-                              child: Text(
-                                "+84",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                            hintText: "Số điện thoại",
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: "Giới tính",
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        RichText(
-                          text: TextSpan(
-                            text: 'Bằng cách đăng ký, bạn đồng ý với ',
-                            style: const TextStyle(color: Colors.black,fontSize: 14),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: 'Điều khoản của chúng tôi.',
-                                style: const TextStyle(
-                                    color: ResColor.orange,
-                                    fontWeight: FontWeight.bold),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    // Điều hướng đến trang chính sách bảo mật
-                                  },
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                      ],
-                    ),
-                  ),
+                  _buildFormFields(),
                 ],
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ResColor.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>
-                          VerifyOtpScreen()));
-                },
-                child: const Text(
-                  "ĐĂNG KÝ",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: ResColor.white),
-                ),
-              ),
+          _buildRegisterButton(),
+          _buildLoginRedirect(context),
+        ],
+      ),
+    );
+  }
 
-            ),
-          ),
+  Widget _buildHeader() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 40),
+      decoration: const BoxDecoration(
+        color: ResColor.blue,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+        ),
+      ),
+      child: Column(
+        children: [
+          const SizedBox(height: 30),
+          Image.asset("assets/logo/logo2.png", height: 50, width: 50),
+          const SizedBox(height: 8),
+          Text(AppKeys.slogan,
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFormFields() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          _buildTextField(controller.fullNameController, "Họ và tên"),
+          const SizedBox(height: 16),
+          //_buildTextField(controller.birthDateController, "Ngày sinh"),
+          _buildDatePickerField(),
+          const SizedBox(height: 16),
+          _buildTextField(controller.phoneController, "Số điện thoại",
+              prefix: const Padding(
+                padding: EdgeInsets.only(top: 14),
+                child: Text("   +84", style: TextStyle(fontWeight: FontWeight.bold)),
+              )),
+          const SizedBox(height: 16),
+          // _buildTextField(controller.genderController, "Giới tính"),
+          _buildGenderDropdown(),
+
           const SizedBox(height: 16),
           RichText(
             text: TextSpan(
-              text: 'Tôi đã có tài khoản !',
-              style: const TextStyle(color: Colors.black,fontSize: 14),
+              text: 'Bằng cách đăng ký, bạn đồng ý với ',
+              style: const TextStyle(color: Colors.black, fontSize: 14),
               children: <TextSpan>[
                 TextSpan(
-                  text: ' Đăng nhập',
+                  text: 'Điều khoản của chúng tôi.',
                   style: const TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context)=>
-                                LoginScreen()));
-                    },
+                      color: ResColor.orange, fontWeight: FontWeight.bold),
+                  recognizer: TapGestureRecognizer()..onTap = () {},
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 12),
         ],
       ),
+    );
+  }
+  Widget _buildGenderDropdown() {
+    return Obx(() => DropdownButtonFormField<String>(
+      value: controller.selectedGender.value.isEmpty ? null : controller.selectedGender.value,
+      decoration: InputDecoration(
+        // labelText: "Giới tính",
+       // labelStyle: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.w600),
+        hintText: "Chọn giới tính",
+        hintStyle: TextStyle(color: Colors.grey[400]),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.grey, width: 2),
+        ),
+        //suffixIcon: const Icon(Icons.keyboard_arrow_down),
+      ),
+      dropdownColor: Colors.white,
+      iconSize: 24,
+      elevation: 4,
+      style: const TextStyle(color: Colors.black87, fontSize: 16),
+      items: const [
+        DropdownMenuItem(value: "Nam", child: Text("Nam")),
+        DropdownMenuItem(value: "Nữ", child: Text("Nữ")),
+      ],
+      onChanged: (value) {
+        if (value != null) {
+          controller.selectedGender.value = value;
+          controller.genderController.text = value;
+        }
+      },
+    ));
+  }
+
+
+  Widget _buildDatePickerField() {
+    return TextField(
+      controller: controller.birthDateController,
+      readOnly: true,
+      onTap: () async {
+        DateTime? pickedDate = await showDatePicker(
+          context: Get.context!,
+          initialDate: DateTime.now(),
+          firstDate: DateTime(1900),
+          lastDate: DateTime.now(),
+          //locale: const Locale("vi", "VN"),
+        );
+        if (pickedDate != null) {
+          controller.selectedBirthDate.value = pickedDate;
+          controller.birthDateController.text =
+          "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+        }
+      },
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.calendar_today),
+        hintText: "Ngày sinh",
+        hintStyle: const TextStyle(color: Colors.grey),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.grey),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String hintText,
+      {Widget? prefix}) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        prefixIcon: prefix,
+        hintText: hintText,
+        hintStyle: const TextStyle(color: Colors.grey),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.grey),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRegisterButton() {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Obx(() => SizedBox(
+        width: double.infinity,
+        height: 50,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: ResColor.blue,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          onPressed: controller.isLoading.value
+              ? null
+              : () {
+            controller.onRegister();
+          },
+          child: controller.isLoading.value
+              ? const CircularProgressIndicator(color: Colors.white)
+              : const Text(
+            "ĐĂNG KÝ",
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: ResColor.white),
+          ),
+        ),
+      )),
+    );
+  }
+
+  Widget _buildLoginRedirect(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(height: 16),
+        RichText(
+          text: TextSpan(
+            text: 'Tôi đã có tài khoản !',
+            style: const TextStyle(color: Colors.black, fontSize: 14),
+            children: <TextSpan>[
+              TextSpan(
+                text: ' Đăng nhập',
+                style: const TextStyle(
+                    color: Colors.green, fontWeight: FontWeight.bold),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Get.to(() =>  LoginScreen());
+                  },
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+      ],
     );
   }
 }
