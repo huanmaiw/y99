@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "395163013555",
+    "project_id": "y99mobile-2f1b0",
+    "storage_bucket": "y99mobile-2f1b0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395163013555:android:4c960f1af5a5cf6be3fbc6",
+        "android_client_info": {
+          "package_name": "com.example.y99"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvJbfUmXV0JPi3qqXkEprGNxmXH5pNAgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
