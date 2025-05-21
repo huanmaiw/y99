@@ -1,8 +1,8 @@
+import 'package:Y99/core/app/color/res_color.dart';
+import 'package:Y99/core/app/res/radius.dart';
+import 'package:Y99/core/app/res/text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:y99/core/app/color/res_color.dart';
-import 'package:y99/core/app/res/radius.dart';
-import 'package:y99/core/app/res/text.dart';
 
 class AppTheme {
   AppTheme._();

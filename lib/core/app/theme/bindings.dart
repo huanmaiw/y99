@@ -1,8 +1,8 @@
+import 'package:Y99/source/mvc/controller/login_controller.dart';
+import 'package:Y99/source/mvc/controller/password_controller.dart';
+import 'package:Y99/source/mvc/controller/register_controller.dart';
+import 'package:Y99/source/mvc/controller/verify_otp_controller.dart';
 import 'package:get/get.dart';
-import 'package:y99/source/mvc/controller/login_controller.dart';
-import 'package:y99/source/mvc/controller/register_controller.dart';
-import 'package:y99/source/mvc/controller/verify_otp_controller.dart';
-import 'package:y99/source/mvc/controller/password_controller.dart';
 
 class AppBindings {
   static void dependencies() {
@@ -52,5 +52,11 @@ class ForgetPasswordBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => PasswordController());
+  }
+}
+class VerifyOtp2Binding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => VerifyOtpController());
   }
 }

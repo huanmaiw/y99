@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VerifyOtpController extends GetxController {
   var otpCode = ''.obs;
+  final otpTextController = TextEditingController();
   var isLoading = false.obs;
 
   void onOtpChanged(String value) {
@@ -26,4 +28,10 @@ class VerifyOtpController extends GetxController {
       isLoading.value = false;
     }
   }
+  @override
+  void onClose() {
+    otpTextController.dispose();
+    super.onClose();
+  }
+
 }

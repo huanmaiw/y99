@@ -1,5 +1,5 @@
+import 'package:Y99/core/app/color/res_color.dart';
 import 'package:flutter/material.dart';
-import 'package:y99/core/app/color/res_color.dart';
 
 final class ResTypography {
   ResTypography._();
