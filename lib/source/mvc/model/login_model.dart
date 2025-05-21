@@ -5,7 +5,7 @@ class LoginModel {
   LoginModel({required this.phone, required this.password});
 
   Map<String, dynamic> toJson() => {
-    'phone': phone,
+    'username': phone,
     'password': password,
   };
 }

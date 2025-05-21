@@ -1,8 +1,9 @@
+import 'package:Y99/core/auth/auth_service.dart';
+import 'package:Y99/source/mvc/model/set_password_model.dart';
+import 'package:Y99/source/mvc/view/home/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:y99/core/auth/auth_service.dart';
-import 'package:y99/source/mvc/model/set_password_model.dart';
-import 'package:y99/source/mvc/view/home/welcome_screen.dart';
+
 
 class PasswordController extends GetxController {
   final newPassword = TextEditingController();

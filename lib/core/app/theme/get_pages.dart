@@ -1,10 +1,11 @@
+import 'package:Y99/source/mvc/view/home/home_screen.dart';
+import 'package:Y99/source/mvc/view/login/login_screen.dart';
+import 'package:Y99/source/mvc/view/otp/verify_otp_screen.dart';
+import 'package:Y99/source/mvc/view/password/password_screen.dart';
+import 'package:Y99/source/mvc/view/register/register_screen.dart';
+import 'package:Y99/source/mvc/view/otp/verify_otp.dart';
+import 'package:Y99/source/mvc/view/splash/splash_screen.dart';
 import 'package:get/get.dart';
-import 'package:y99/source/mvc/view/home/home_screen.dart';
-import 'package:y99/source/mvc/view/login/login_screen.dart';
-import 'package:y99/source/mvc/view/otp/verify_otp_screen.dart';
-import 'package:y99/source/mvc/view/register/register_screen.dart';
-import 'package:y99/source/mvc/view/register/password_screen.dart';
-import 'package:y99/source/mvc/view/splash/splash_screen.dart';
 
 import 'bindings.dart';
 
@@ -14,8 +15,10 @@ class Routers {
   static const String login = '/login';
   static const String register = '/register';
   static const String verifyOtp = '/verifyOtp';
+  static const String verifyOtp2 = '/verifyOtp2';
   static const String password = '/password';
   static const String forgetPassword = '/forgetPassword';
+
 }
 
 class GetPages {
@@ -37,6 +40,11 @@ class GetPages {
     GetPage(
       name: Routers.verifyOtp,
       page: () => VerifyOtpScreen(),
+      binding: VerifyOtp2Binding(),
+    ),
+    GetPage(
+      name: Routers.verifyOtp2,
+      page: () => VerifyOtp(),
       binding: VerifyOtpBinding(),
     ),
     GetPage(

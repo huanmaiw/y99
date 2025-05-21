@@ -1,7 +1,7 @@
+import 'package:Y99/core/app/color/res_color.dart';
+import 'package:Y99/core/app/theme/app_key.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:y99/core/app/color/res_color.dart';
-import 'package:y99/core/app/theme/app_key.dart';
 
 class ForgetPassword extends StatelessWidget {
 

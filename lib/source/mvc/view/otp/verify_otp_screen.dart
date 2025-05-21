@@ -1,9 +1,11 @@
+import 'package:Y99/core/app/color/res_color.dart';
+import 'package:Y99/core/app/theme/app_key.dart';
+import 'package:Y99/source/mvc/controller/verify_otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:y99/core/app/color/res_color.dart';
-import 'package:y99/core/app/theme/app_key.dart';
-import 'package:y99/source/mvc/controller/verify_otp_controller.dart';
-import 'package:y99/source/mvc/view/otp/verify_otp_form.dart';
+
+import 'verify_otp_form.dart';
+
 
 class VerifyOtpScreen extends StatelessWidget {
   const VerifyOtpScreen({super.key});

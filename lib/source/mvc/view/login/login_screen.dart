@@ -1,12 +1,12 @@
+import 'package:Y99/core/app/color/res_color.dart';
+import 'package:Y99/core/app/theme/app_key.dart';
+import 'package:Y99/source/mvc/controller/login_controller.dart';
+import 'package:Y99/source/mvc/view/password/forget_password.dart';
+import 'package:Y99/source/mvc/view/register/register_screen.dart';
+import 'package:Y99/source/mvc/view/otp/verify_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:y99/core/app/color/res_color.dart';
-import 'package:y99/core/app/theme/app_key.dart';
-import 'package:y99/source/mvc/controller/login_controller.dart';
-import 'package:y99/source/mvc/view/register/forget_password.dart';
-import 'package:y99/source/mvc/view/register/register_screen.dart';
-
 class LoginScreen extends StatelessWidget {
   final LoginController controller = Get.put(LoginController());
 
@@ -15,7 +15,6 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Header
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 40),
@@ -62,7 +61,6 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   TextFormField(
                     controller: controller.phoneController,
-                    keyboardType: TextInputType.phone,
                     validator: controller.validatePhone,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.account_circle, color: Colors.grey),
@@ -151,7 +149,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               const Text("Bạn chưa có tài khoản? "),
               GestureDetector(
-                onTap: () => Get.to(() => RegisterScreen()),
+                onTap: () => Get.to(() => VerifyOtp()),
                 child: const Text("Đăng ký",
                     style: TextStyle(
                         color: Color(0xFF00B140), fontWeight: FontWeight.bold)),

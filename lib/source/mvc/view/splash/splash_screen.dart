@@ -1,6 +1,8 @@
+import 'package:Y99/core/app/color/res_color.dart';
+import 'package:Y99/source/mvc/view/home/home_screen.dart';
+import 'package:Y99/source/mvc/view/login/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:y99/core/app/color/res_color.dart';
-import 'package:y99/source/mvc/view/login/login_screen.dart';
+import 'package:get_storage/get_storage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,6 +16,8 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
   late Animation<double> _fadeAnimation;
+
+  final storage = GetStorage();
 
   @override
   void initState() {
@@ -33,10 +37,18 @@ class _SplashScreenState extends State<SplashScreen>
     _controller.forward();
 
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) =>  LoginScreen()),
-      );
+      final token = storage.read('token');
+      if (token != null && token.toString().isNotEmpty) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
+        );
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) =>  LoginScreen()),
+        );
+      }
     });
   }
 

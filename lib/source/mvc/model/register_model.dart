@@ -1,20 +1,25 @@
 class RegisterModel {
-  final String fullName;
-  final String birthDate;
+  final String fullname;
   final String phone;
-  final String gender;
+  final String email;
+  final String? note;
+  final String? content;
 
   RegisterModel({
-    required this.fullName,
-    required this.birthDate,
+    required this.fullname,
     required this.phone,
-    required this.gender,
+    required this.email,
+    this.note,
+    this.content,
   });
 
-  Map<String, dynamic> toJson() => {
-    'fullName': fullName,
-    'birthDate': birthDate,
-    'phone': phone,
-    'gender': gender,
-  };
+  Map<String, dynamic> toJson() {
+    return {
+      "fullname": fullname,
+      "phone": phone,
+      "email": email,
+      "note": note,
+      "content": content,
+    };
+  }
 }
