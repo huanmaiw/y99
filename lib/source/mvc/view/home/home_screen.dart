@@ -1,12 +1,13 @@
-import 'package:Y99/core/app/color/res_color.dart';
-import 'package:Y99/source/mvc/view/home/loan_screen.dart';
-import 'package:Y99/source/mvc/view/home/new_screen.dart';
-import 'package:Y99/source/mvc/view/home/profile_screen.dart';
+import 'package:Y99/source/mvc/view/home/bottomnavbar/screen3/new_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-import 'loan_quick_screen.dart';
-import 'main_home_screen.dart';
+import 'bottomnavbar/screen2/loan_screen.dart';
+import 'bottomnavbar/screen1/main_home_screen.dart';
+import 'bottomnavbar/screen4/profile_screen.dart';
+import 'notification/notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,13 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
     Colors.orange,
     Colors.green,
     Colors.purple,
-    Colors.red,
   ];
   final List<Widget> _screens = [
     MainHomeScreen(),
     LoanScreen(),
     NewScreen(),
-   // LoanQuickScreen(),
     ProfileScreen(),
   ];
 
@@ -57,8 +56,26 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications_none, color: Colors.black),
-            onPressed: () {},
+            icon: Stack(
+              children: [
+                const Icon(FontAwesomeIcons.bell, color: Colors.black),
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            onPressed: () {
+                Get.to(() => const NotificationScreen());
+            },
           ),
         ],
       ),
@@ -91,23 +108,19 @@ class _HomeScreenState extends State<HomeScreen> {
             tabs: const [
 
               GButton(
-                icon: Icons.home,
+                icon: FontAwesomeIcons.house,
                 //text: 'Trang chủ',
               ),
               GButton(
-                icon: Icons.account_balance_wallet,
+                icon: FontAwesomeIcons.handHoldingDollar ,
                 //text: 'Khoản vay',
               ),
               GButton(
-                icon: Icons.newspaper,
+                icon: FontAwesomeIcons.handshake,
                 //text: 'Tin tức',
               ),
-              // GButton(
-              //   icon: Icons.wallet,
-              //   //text: 'Tài khoản',
-              // ),
               GButton(
-                icon: Icons.person,
+                icon: FontAwesomeIcons.user,
                 //text: 'Tài khoản',
               ),
             ],

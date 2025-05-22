@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
-import 'api/app_endpoint.dart';
+import 'api/api_routers.dart';
 import 'app_response.dart';
 import 'errol_logger.dart';
 part 'auth_repo.g.dart';
