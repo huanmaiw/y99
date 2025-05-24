@@ -1,4 +1,4 @@
-import 'package:Y99/core/app/theme/get_snack_bar.dart';
+import 'package:Y99/core/app/app_get/get_snack_bar.dart';
 import 'package:Y99/source/mvc/model/login_model.dart';
 import 'package:Y99/source/mvc/view/home/home_screen.dart';
 import 'package:flutter/material.dart';

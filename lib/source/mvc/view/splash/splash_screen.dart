@@ -1,6 +1,6 @@
 import 'package:Y99/core/app/color/res_color.dart';
 import 'package:Y99/source/mvc/view/home/home_screen.dart';
-import 'package:Y99/source/mvc/view/login/login_screen.dart';
+import 'package:Y99/source/mvc/view/lock_screen/lock_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
       } else {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) =>  LoginScreen()),
+          MaterialPageRoute(builder: (_) =>  LockScreen()),
         );
       }
     });
@@ -61,15 +61,15 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ResColor.blue,
+      backgroundColor: ResColor.splash,
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
           child: ScaleTransition(
             scale: _scaleAnimation,
             child: Image.asset(
-              "assets/logo/logosplash.png",
-              width: MediaQuery.of(context).size.width * 0.4,
+              "assets/logo/logo3.png",
+              width: MediaQuery.of(context).size.width * 0.25,
               fit: BoxFit.contain,
             ),
           ),

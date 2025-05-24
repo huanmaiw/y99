@@ -69,14 +69,14 @@ class VerifyOtpForm extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Get.snackbar(
-                  "Thành công",
-                  "Xác thực mã OTP thành công",
-                  snackPosition: SnackPosition.BOTTOM,
-                  backgroundColor: Colors.blue,
-                  colorText: Colors.white,
-                  duration: const Duration(seconds: 1), // Thời gian hiển thị
-                );
+                // Get.snackbar(
+                //   "Thành công",
+                //   "Xác thực mã OTP thành công",
+                //   snackPosition: SnackPosition.BOTTOM,
+                //   backgroundColor: Colors.blue,
+                //   colorText: Colors.white,
+                //   duration: const Duration(seconds: 1), // Thời gian hiển thị
+                // );
                 Get.to(() => PasswordScreen());
               },
               child: controller.isLoading.value

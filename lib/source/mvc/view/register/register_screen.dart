@@ -1,5 +1,5 @@
 import 'package:Y99/core/app/color/res_color.dart';
-import 'package:Y99/core/app/theme/app_key.dart';
+import 'package:Y99/core/app/theme/languages/app_key.dart';
 import 'package:Y99/source/mvc/controller/register_controller.dart';
 import 'package:Y99/source/mvc/view/login/login_screen.dart';
 import 'package:flutter/gestures.dart';
@@ -66,20 +66,10 @@ class RegisterScreen extends StatelessWidget {
           _buildTextField(controller.usernameController, "Họ và tên"),
           const SizedBox(height: 16),
           _buildTextField(controller.passwordController, "Mật khẩu"),
-          //_buildTextField(controller.birthDateController, "Ngày sinh"),
-          //_buildDatePickerField(),
           const SizedBox(height: 16),
-          // _buildTextField(controller.phoneController, "Số điện thoại",
-          //     prefix: const Padding(
-          //       padding: EdgeInsets.only(top: 14),
-          //       child: Text("   +84", style: TextStyle(fontWeight: FontWeight.bold)),
-          //     )),
           _buildTextField(controller.emailController,"Email",
               prefix: const Icon(Icons.email_outlined)),
           const SizedBox(height: 16),
-          // _buildTextField(controller.genderController, "Giới tính"),
-         // _buildGenderDropdown(),
-
           RichText(
             text: TextSpan(
               text: 'Bằng cách đăng ký, bạn đồng ý với ',
@@ -98,71 +88,6 @@ class RegisterScreen extends StatelessWidget {
       ),
     );
   }
-  // Widget _buildGenderDropdown() {
-  //   return Obx(() => DropdownButtonFormField<String>(
-  //     value: controller.selectedGender.value.isEmpty ? null : controller.selectedGender.value,
-  //     decoration: InputDecoration(
-  //       // labelText: "Giới tính",
-  //      // labelStyle: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.w600),
-  //       hintText: "Chọn giới tính",
-  //       hintStyle: TextStyle(color: Colors.grey[400]),
-  //       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-  //       border: OutlineInputBorder(
-  //         borderRadius: BorderRadius.circular(12),
-  //       ),
-  //       focusedBorder: OutlineInputBorder(
-  //         borderRadius: BorderRadius.circular(12),
-  //         borderSide: BorderSide(color: Colors.grey, width: 2),
-  //       ),
-  //       //suffixIcon: const Icon(Icons.keyboard_arrow_down),
-  //     ),
-  //     dropdownColor: Colors.white,
-  //     iconSize: 24,
-  //     elevation: 4,
-  //     style: const TextStyle(color: Colors.black87, fontSize: 16),
-  //     items: const [
-  //       DropdownMenuItem(value: "Nam", child: Text("Nam")),
-  //       DropdownMenuItem(value: "Nữ", child: Text("Nữ")),
-  //     ],
-  //     onChanged: (value) {
-  //       if (value != null) {
-  //         controller.selectedGender.value = value;
-  //         controller.genderController.text = value;
-  //       }
-  //     },
-  //   ));
-  // }
-
-
-  // Widget _buildDatePickerField() {
-  //   return TextField(
-  //     controller: controller.birthDateController,
-  //     readOnly: true,
-  //     onTap: () async {
-  //       DateTime? pickedDate = await showDatePicker(
-  //         context: Get.context!,
-  //         initialDate: DateTime.now(),
-  //         firstDate: DateTime(1900),
-  //         lastDate: DateTime.now(),
-  //         //locale: const Locale("vi", "VN"),
-  //       );
-  //       if (pickedDate != null) {
-  //         controller.selectedBirthDate.value = pickedDate;
-  //         controller.birthDateController.text =
-  //         "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
-  //       }
-  //     },
-  //     decoration: InputDecoration(
-  //       prefixIcon: const Icon(Icons.calendar_today),
-  //       hintText: "Ngày sinh",
-  //       hintStyle: const TextStyle(color: Colors.grey),
-  //       border: OutlineInputBorder(
-  //         borderSide: const BorderSide(color: Colors.grey),
-  //         borderRadius: BorderRadius.circular(10),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   Widget _buildTextField(TextEditingController controller, String hintText,
       {Widget? prefix}) {

@@ -1,11 +1,11 @@
-import 'package:Y99/core/app/theme/get_snack_bar.dart';
+import 'package:Y99/core/app/app_get/get_snack_bar.dart';
 import 'package:Y99/core/auth/auth_service.dart';
 import 'package:Y99/source/mvc/model/register_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/auth/api_service.dart';
-import '../view/home/user_list_screen.dart';
+import '../view/home/list_user/user_list_screen.dart';
 
 class RegisterController extends GetxController {
  //  final fullNameController = TextEditingController();

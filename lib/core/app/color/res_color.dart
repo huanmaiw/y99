@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ResColor {
   ResColor._();
-
+  static const splash = Color(0xFFE6F8FF);
   static const blue = Color(0xFF63B5FA);
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xFF000000);
@@ -31,13 +31,4 @@ class ResColor {
   //green
   static const green = Color(0xFF2EB84C);
   static const grey = Color(0xFFB7B7B7);
-  //text
-  static const titleBoldColor = Color(0xFF555555);
-  static const supTitleColor = Color(0xFF8F8E8E);
-
-  static const titleColor = Color(0xFF333333);
-
-  static const primaryColorDark = Color(0xFF1976D2);
-
-//button
 }

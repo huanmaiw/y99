@@ -1,12 +1,10 @@
 import 'package:Y99/core/app/color/res_color.dart';
-import 'package:Y99/core/app/theme/app_key.dart';
+import 'package:Y99/core/app/theme/languages/app_key.dart';
 import 'package:Y99/source/mvc/controller/login_controller.dart';
-import 'package:Y99/source/mvc/view/password/forget_password.dart';
-import 'package:Y99/source/mvc/view/register/register_screen.dart';
+import 'package:Y99/source/mvc/view/forget_password/forget_password_screen.dart';
 import 'package:Y99/source/mvc/view/otp/verify_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class LoginScreen extends StatelessWidget {
   final LoginController controller = Get.put(LoginController());
 
@@ -97,7 +95,7 @@ class LoginScreen extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {
-                        Get.to(() => ForgetPassword());
+                        Get.to(() => ForgetPasswordScreen());
                       },
                       child: const Text("Quên mật khẩu?",
                           style: TextStyle(color: Colors.orange)),
@@ -130,18 +128,18 @@ class LoginScreen extends StatelessWidget {
           const Spacer(),
 
           // Social login
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(FontAwesomeIcons.facebook, color: Colors.blue, size: 30),
-              const SizedBox(width: 30),
-              Image.asset("assets/icon/gg.png", width: 40, height: 40),
-              const SizedBox(width: 30),
-              const Icon(FontAwesomeIcons.twitter, color: Colors.lightBlue, size: 30),
-            ],
-          ),
-
-          const SizedBox(height: 20),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     const Icon(FontAwesomeIcons.facebook, color: Colors.blue, size: 30),
+          //     const SizedBox(width: 30),
+          //     Image.asset("assets/icon/gg.png", width: 40, height: 40),
+          //     const SizedBox(width: 30),
+          //     const Icon(FontAwesomeIcons.twitter, color: Colors.lightBlue, size: 30),
+          //   ],
+          // ),
+          //
+          // const SizedBox(height: 20),
 
           // Register
           Row(

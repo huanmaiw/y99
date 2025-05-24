@@ -1,13 +1,14 @@
-import 'package:Y99/core/app/color/res_color.dart';
-import 'package:Y99/core/app/theme/app_key.dart';
-import 'package:Y99/source/mvc/controller/password_controller.dart';
-import 'package:Y99/source/mvc/view/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:Y99/source/mvc/controller/password_controller.dart';
+import 'password_footer.dart';
+import 'password_form.dart';
+import 'password_header.dart';
 
 class PasswordScreen extends StatelessWidget {
-  PasswordScreen({super.key});
-
+  PasswordScreen({Key? key}) : super(key: key);
   final controller = Get.put(PasswordController());
 
   @override
@@ -20,167 +21,85 @@ class PasswordScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: SingleChildScrollView(
-                  padding: EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: ConstrainedBox(
                     constraints: BoxConstraints(minHeight: constraints.maxHeight),
                     child: IntrinsicHeight(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Header
-                          Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.symmetric(vertical: 40),
-                            decoration: const BoxDecoration(
-                              color: ResColor.blue,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(30),
-                                bottomRight: Radius.circular(30),
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 30),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset("assets/logo/logo2.png", height: 50, width: 50),
-                                  ],
-                                ),
-                                const SizedBox(height: 8),
-                                Text(AppKeys.slogan,
-                                    style: const TextStyle(
-                                        color: Colors.white, fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-
+                          const PasswordHeader(),
                           const SizedBox(height: 30),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 24),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text("Thông tin cần thiết lập",
-                                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-                            ),
-                          ),
-
-                          const SizedBox(height: 16),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: "Họ và tên",
-                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                              ),
-                            )
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Obx(() => TextField(
-                              controller: controller.newPassword,
-                              obscureText: controller.obscureNewPassword.value,
-                              decoration: InputDecoration(
-                                hintText: "Mật khẩu",
-                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    controller.obscureNewPassword.value
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                  ),
-                                  onPressed: controller.toggleObscureNew,
-                                ),
-                              ),
-                            )),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Obx(() => TextField(
-                              controller: controller.confirmPassword,
-                              obscureText: controller.obscureConfirmPassword.value,
-                              decoration: InputDecoration(
-                                hintText: "Nhập lại mật khẩu",
-                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    controller.obscureConfirmPassword.value
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                  ),
-                                  onPressed: controller.toggleObscureConfirm,
-                                ),
-                              ),
-                            )),
-                          ),
-
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 24),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "1. Mật khẩu phải có ít nhất 6 ký tự\n"
-                                    "2. Bao gồm số hoặc kí tự đặc biệt\n"
-                                    "3. Mật khẩu khớp.",
-                                style: TextStyle(fontSize: 14, color: Colors.grey),
-                              ),
-                            ),
-                          ),
-
+                          const PasswordForm(),
                           const SizedBox(height: 20),
+                          Center(child: Text("Tạo mã PIN",style: TextStyle(fontSize: 20,
+                              fontWeight: FontWeight.bold),)),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Obx(() => Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                PinCodeTextField(
+                                  appContext: context,
+                                  length: 6,
+                                  controller: controller.pinCodeController,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly
+                                  ],
+                                  animationType: AnimationType.fade,
+                                  pinTheme: PinTheme(
+                                    shape: PinCodeFieldShape.box,
+                                    borderRadius: BorderRadius.circular(5),
+                                    fieldHeight: 50,
+                                    fieldWidth: 40,
+                                    activeFillColor: Colors.white,
+                                    inactiveFillColor: Colors.white,
+                                    selectedFillColor: Colors.white,
+                                    activeColor: Colors.blue,
+                                    selectedColor: Colors.blue,
+                                    inactiveColor: Colors.grey,
+                                    borderWidth: 2,
+                                  ),
+                                  animationDuration:
+                                  const Duration(milliseconds: 300),
+                                  enableActiveFill: true,
+                                  onChanged: (value) {
+                                    if (value.length == 6) {
+                                      controller.pinError.value = '';
+                                    }
+                                  },
+                                  onCompleted: (value) {
+                                    controller.pinError.value = '';
+                                  },
+                                ),
+                                if (controller.pinError.value.isNotEmpty)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8),
+                                    child: Text(
+                                      controller.pinError.value,
+                                      style: const TextStyle(
+                                          color: Colors.red, fontSize: 12),
+                                    ),
+                                  ),
+                              ],
+                            )),
+                          ),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
                   ),
                 ),
               ),
-
-              // BUTTONS DƯỚI CÙNG
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ResColor.blue,
-                        minimumSize: const Size.fromHeight(50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                      onPressed: ()=> Get.to(()=>HomeScreen()),
-                      //controller.submitPassword,
-                      child: const Text(
-                        "ĐỒNG Ý",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: ResColor.white),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ResColor.black,
-                        minimumSize: const Size.fromHeight(50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                      onPressed: () => Get.back(),
-                      child: const Text(
-                        "QUAY LẠI",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: ResColor.white),
-                      ),
-                    ),
-                  ],
-                ),
+              PasswordFooter(
+                 controller.submitPassword,
               ),
             ],
           );
         },
       ),
     );
-  }}
+  }
+}

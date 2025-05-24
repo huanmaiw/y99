@@ -1,5 +1,5 @@
 import 'package:Y99/core/app/color/res_color.dart';
-import 'package:Y99/core/app/theme/app_key.dart';
+import 'package:Y99/core/app/theme/languages/app_key.dart';
 import 'package:Y99/source/mvc/controller/verify_otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

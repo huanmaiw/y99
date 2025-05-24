@@ -1,6 +1,6 @@
 import 'package:Y99/core/app/color/res_color.dart';
 import 'package:Y99/core/app/res/radius.dart';
-import 'package:Y99/core/app/res/text.dart';
+import 'package:Y99/core/app/theme/text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -67,3 +67,28 @@ class AppTheme {
     ),
   );
 }
+// class MyApp extends StatelessWidget {
+//   final Rx<ThemeMode> _themeMode = ThemeMode.light.obs;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Obx(() => GetMaterialApp(
+//         debugShowCheckedModeBanner: false,
+//         title: 'My App',
+//         translations: AppTranslations(),
+//         locale: Locale('vi', 'VN'),
+//         fallbackLocale: Locale('en', 'US'),
+//         theme: AppTheme.lightTheme,
+//         darkTheme: AppTheme.darkTheme,
+//         themeMode: _themeMode.value,
+//         home: HomeScreen(
+//         onToggleTheme: () {
+//     _themeMode.value =
+//     _themeMode.value == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+//     },
+// actions: [
+// IconButton(
+// icon: Icon(Icons.brightness_6),
+// onPressed: onToggleTheme,
+// ),
+// ],
